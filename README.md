@@ -1,6 +1,6 @@
 # SafeVision 🚦👀
 
-SafeVision is a **React Native app** that uses [Vision Camera](https://github.com/mrousavy/react-native-vision-camera) and [react-native-fast-tflite](https://github.com/mrousavy/react-native-fast-tflite) with **TensorFlow Lite** to detect obstacles in real time.  
+ProximityAlert is a **React Native app** that uses [Vision Camera](https://github.com/mrousavy/react-native-vision-camera) and [react-native-fast-tflite](https://github.com/mrousavy/react-native-fast-tflite) with **TensorFlow Lite** to detect obstacles in real time.  
 It draws bounding boxes around detected objects and warns the user when objects are too close with **visual alerts** and **vibrations**.
 
 ---
