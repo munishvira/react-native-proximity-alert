@@ -21,7 +21,8 @@ const CONF_THRESHOLD = 0.6;
 const CAUTION_THRESHOLD = 0.4; // 40%
 const DANGER_THRESHOLD = 0.7; // 70%
 const UI_THROTTLE_MS = 200;
-const ALERT_HOLD_MS = 1000; // keep alert stable for at least 1s
+const ALERT_HOLD_MS = 800;
+const SAFE_TIMEOUT_MS = 1200; // ✅ force reset to safe if nothing for this long
 
 type Box = { left: number; top: number; width: number; height: number; conf: number };
 type AlertLevel = 'safe' | 'caution' | 'danger';
@@ -37,12 +38,25 @@ export default function App() {
   const lastBoxes = useRef<Box[]>([]);
   const lastUIUpdate = useRef(0);
   const lastChange = useRef(0);
+  const lastDetection = useRef(Date.now());
 
   useEffect(() => {
     (async () => {
       await Camera.requestCameraPermission();
     })();
-  }, []);
+
+    // ✅ watchdog timer: reset to safe if no detections for a while
+    const id = setInterval(() => {
+      if (Date.now() - lastDetection.current > SAFE_TIMEOUT_MS) {
+        if (alertLevel !== 'safe') {
+          setAlertLevel('safe');
+          Vibration.cancel();
+        }
+      }
+    }, 500);
+
+    return () => clearInterval(id);
+  }, [alertLevel]);
 
   const nearlyEqualBoxes = (a: Box[], b: Box[]) => {
     if (a.length !== b.length) {return false;}
@@ -59,16 +73,22 @@ export default function App() {
 
   const updateAlertLevel = (level: AlertLevel) => {
     const now = Date.now();
-    // prevent flicker by holding level for ALERT_HOLD_MS
+
+    if (level === 'safe') {
+      if (alertLevel !== 'safe') {
+        setAlertLevel('safe');
+        Vibration.cancel();
+      }
+      return;
+    }
+
     if (level !== alertLevel && now - lastChange.current > ALERT_HOLD_MS) {
       setAlertLevel(level);
       lastChange.current = now;
 
       if (level === 'danger') {
-        // 🚨 continuous vibration
-        Vibration.vibrate([0, 400, 200, 400], true);
+        Vibration.vibrate([0, 500, 200, 500], true); // stronger buzz
       } else {
-        // stop vibration when leaving danger
         Vibration.cancel();
       }
     }
@@ -140,6 +160,10 @@ export default function App() {
         }
       }
 
+      if (out.length > 0) {
+        lastDetection.current = Date.now();
+      }
+
       updateBoxesSafe(out);
       setAlertLevelSafe(level);
     },
@@ -178,10 +202,17 @@ export default function App() {
         <View
           style={[
             styles.warningBox,
-            { backgroundColor: alertLevel === 'danger' ? 'rgba(255,0,0,0.85)' : 'rgba(255,255,0,0.85)' },
+            {
+              backgroundColor:
+                alertLevel === 'danger'
+                  ? 'rgba(255,0,0,0.85)'
+                  : 'rgba(255,255,0,0.85)',
+            },
           ]}>
           <Text style={styles.warningText}>
-            {alertLevel === 'caution' ? '⚠️ Caution: Obstacle Ahead' : '🚨 Danger! Too Close'}
+            {alertLevel === 'caution'
+              ? '⚠️ Caution: Obstacle Ahead'
+              : '🚨 Danger! Too Close'}
           </Text>
         </View>
       )}
