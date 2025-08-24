@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "FaceLandmarksTS.app"
-               BlueprintName = "FaceLandmarksTS"
-               ReferencedContainer = "container:FaceLandmarksTS.xcodeproj">
+               BuildableName = "ProximityAlert.app"
+               BlueprintName = "ProximityAlert"
+               ReferencedContainer = "container:ProximityAlert.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "FaceLandmarksTSTests.xctest"
-               BlueprintName = "FaceLandmarksTSTests"
-               ReferencedContainer = "container:FaceLandmarksTS.xcodeproj">
+               BuildableName = "ProximityAlertTests.xctest"
+               BlueprintName = "ProximityAlertTests"
+               ReferencedContainer = "container:ProximityAlert.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "FaceLandmarksTS.app"
-            BlueprintName = "FaceLandmarksTS"
-            ReferencedContainer = "container:FaceLandmarksTS.xcodeproj">
+            BuildableName = "ProximityAlert.app"
+            BlueprintName = "ProximityAlert"
+            ReferencedContainer = "container:ProximityAlert.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "FaceLandmarksTS.app"
-            BlueprintName = "FaceLandmarksTS"
-            ReferencedContainer = "container:FaceLandmarksTS.xcodeproj">
+            BuildableName = "ProximityAlert.app"
+            BlueprintName = "ProximityAlert"
+            ReferencedContainer = "container:ProximityAlert.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

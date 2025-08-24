@@ -1,4 +1,4 @@
-package com.facelandmarksts
+package com.proxialert.app
 
 import android.app.Application
 import com.facebook.react.PackageList
