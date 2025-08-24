@@ -1,97 +1,93 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# SafeVision 🚦👀
 
-# Getting Started
+SafeVision is a **React Native app** that uses [Vision Camera](https://github.com/mrousavy/react-native-vision-camera) and [react-native-fast-tflite](https://github.com/mrousavy/react-native-fast-tflite) with **TensorFlow Lite** to detect obstacles in real time.  
+It draws bounding boxes around detected objects and warns the user when objects are too close with **visual alerts** and **vibrations**.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+---
 
-## Step 1: Start Metro
+## 📱 Demo
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+https://github.com/user-attachments/assets/c3bfe61c-8b46-43a3-b54b-e688cc335896
 
-```sh
-# Using npm
-npm start
 
-# OR using Yarn
-yarn start
-```
 
-## Step 2: Build and run your app
+---
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+## ✨ Features
+- Real-time **object detection** using [Google’s Mobile Object Localizer v1](https://www.kaggle.com/models/google/mobile-object-localizer-v1) TensorFlow Lite model.
+- **Bounding boxes** drawn on top of the camera feed.
+- **Proximity-based alerts**:
+  - ⚠️ **Caution** when object covers ~40% of the screen.
+  - 🚨 **Danger** when object covers ~70% of the screen.
+- **Haptic feedback (vibration)** in danger mode.
+- Optimized with **frame processors & worklets** for smooth performance.
+- Can experiment with **other Kaggle TFLite models** → [Kaggle Models Hub](https://www.kaggle.com/models).
 
-### Android
+---
 
-```sh
-# Using npm
-npm run android
+## 🔧 Installation
 
-# OR using Yarn
+```bash
+# Clone repo
+git clone https://github.com/your-username/react-native-proximity-alert.git
+cd Proximity-Alert
+
+# Install dependencies
+yarn install
+# or
+npm install
+
+# iOS setup
+cd ios && pod install && cd ..
+
+# Run app
+yarn ios
+# or
 yarn android
 ```
+---
 
-### iOS
+## 💡 Use Cases
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+- 👩‍🦯 **Assistive app for visually impaired users** – warns before bumping into obstacles.  
+- 🚶 **Pedestrian safety** – heads-up when walking distracted.  
+- 🚗 **Prototype driver assistance** – detect objects too close to the car.  
+- 🧪 **Computer vision research** – experiment with real-time detection in React Native.  
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+---
 
-```sh
-bundle install
-```
+## ⚠️ Limitations
 
-Then, and every time you update your native dependencies, run:
+- Works best in **good lighting conditions**.  
+- Currently uses **screen area thresholding**, not full depth estimation.  
+- Performance depends on **device hardware**.  
 
-```sh
-bundle exec pod install
-```
+---
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+## 🙌 Acknowledgements
 
-```sh
-# Using npm
-npm run ios
+- [react-native-vision-camera](https://github.com/mrousavy/react-native-vision-camera)  
+- [react-native-fast-tflite](https://github.com/mrousavy/react-native-fast-tflite)  
+- [Google Mobile Object Localizer v1](https://www.kaggle.com/models/google/mobile-object-localizer-v1) (TFLite model)  
+- [Kaggle Models](https://www.kaggle.com/models) for exploring other pretrained models
 
-# OR using Yarn
-yarn ios
-```
+---
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## 💡 About the Author
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+👨‍💻 **Munish Vira**  
+Senior Software Engineer | React Native Specialist | 4+ years experience  
 
-## Step 3: Modify your app
+- 💼 4+ years experience in **React Native, React, Next.js**  
+- 🚀 Scaled apps to **1,000+ concurrent users** with **40% performance boost**  
+- 📱 Expert in **animations, in-app purchases, analytics, and cross-platform scaling**  
 
-Now that you have successfully run the app, let's make changes!
+📧 Email: [munishvira1999@gmail.com](mailto:munishvira1999@gmail.com)  
+🔗 LinkedIn: [linkedin.com/in/munish-vira](https://www.linkedin.com/in/munish-vira)  
+💻 GitHub: [github.com/munishvira](https://github.com/munishvira)  
+🌐 Portfolio: [munishvira.github.io](https://munishvira.github.io)  
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+## ⚡ Feel free to fork, improve, or use this as a starter for your own reels-like project!
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+---
